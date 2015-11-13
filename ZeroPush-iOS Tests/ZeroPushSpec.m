@@ -150,7 +150,7 @@ describe(@"ZeroPush", ^{
         });
         context(@"registerDeviceToken", ^{
             it(@"should register with a device token", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/register").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/register").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -161,7 +161,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should register with a device token and subscribe it to a channel", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/register").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/register").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel\":\"testing-channel\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -171,7 +171,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error happens", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/register").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/register").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}").
@@ -184,7 +184,7 @@ describe(@"ZeroPush", ^{
 
         context(@"subscribeToChannel", ^{
             it(@"should add a new channel to the channel subscriptions", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/subscribe").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/subscribe").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel\":\"player-1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -193,7 +193,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error occured", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/subscribe").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/subscribe").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel\":\"player-1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}").
@@ -205,7 +205,7 @@ describe(@"ZeroPush", ^{
 
         context(@"unsubscribeFromChannel", ^{
             it(@"should remove a channel from the channel subscriptions", ^{
-                stubRequest(@"DELETE", @"https://api.zeropush.com/subscribe").
+                stubRequest(@"DELETE", @"https://zeropush.pushwoosh.com/subscribe").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel\":\"player-1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -215,7 +215,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error occured", ^{
-                stubRequest(@"DELETE", @"https://api.zeropush.com/subscribe").
+                stubRequest(@"DELETE", @"https://zeropush.pushwoosh.com/subscribe").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel\":\"player-1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}").
@@ -228,7 +228,7 @@ describe(@"ZeroPush", ^{
 
         context(@"unsubscribeFromAllChannels", ^{
             it(@"should remove all channels", ^{
-                stubRequest(@"PUT", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"PUT", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel_list\":\"\"}");
@@ -237,7 +237,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error occured", ^{
-                stubRequest(@"PUT", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"PUT", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel_list\":\"\"}").
@@ -252,7 +252,7 @@ describe(@"ZeroPush", ^{
             it(@"should invoke the callback with the channels", ^{
                 __block NSArray *fetchedChannels = nil;
 
-                stubRequest(@"GET", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"GET", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{@"Authorization": @"Token token=\"testing\""}).
                 andReturn(200).
                 withBody(@"{\"channels\":[\"player-1\"]}");
@@ -267,7 +267,7 @@ describe(@"ZeroPush", ^{
                 __block NSArray *fetchedChannels = nil;
                 __block NSError *requestError = nil;
 
-                stubRequest(@"GET", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"GET", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{@"Authorization": @"Token token=\"testing\""}).
                 andFailWithError([NSError errorWithDomain:@"com.zeropush.api" code:401 userInfo:nil]);
 
@@ -282,7 +282,7 @@ describe(@"ZeroPush", ^{
 
         context(@"setChannels", ^{
             it(@"should make a request to set channels", ^{
-                stubRequest(@"PUT", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"PUT", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel_list\":\"player-1,game-12\"}");
@@ -292,7 +292,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error occured", ^{
-                stubRequest(@"PUT", @"https://api.zeropush.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
+                stubRequest(@"PUT", @"https://zeropush.pushwoosh.com/devices/1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"channel_list\":\"player-1,game-12\"}").
@@ -304,7 +304,7 @@ describe(@"ZeroPush", ^{
 
         context(@"setBadge", ^{
             it(@"should make a request to set badge", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/set_badge").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/set_badge").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"badge\":\"1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -314,7 +314,7 @@ describe(@"ZeroPush", ^{
             });
 
             it(@"should call the error selector if an error occured", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/set_badge").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/set_badge").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"badge\":\"1\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}").
@@ -326,7 +326,7 @@ describe(@"ZeroPush", ^{
 
         context(@"resetBadge", ^{
             it(@"should make a request to set the badge to 0", ^{
-                stubRequest(@"POST", @"https://api.zeropush.com/set_badge").
+                stubRequest(@"POST", @"https://zeropush.pushwoosh.com/set_badge").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"badge\":\"0\",\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
@@ -337,7 +337,7 @@ describe(@"ZeroPush", ^{
         
         context(@"unregisterDeviceToken", ^{
             it(@"should unregister a device token", ^{
-                stubRequest(@"DELETE", @"https://api.zeropush.com/unregister").
+                stubRequest(@"DELETE", @"https://zeropush.pushwoosh.com/unregister").
                 withHeaders(@{ @"Content-Type": @"application/json",
                                @"Authorization": @"Token token=\"testing\""}).
                 withBody(@"{\"device_token\":\"1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\"}");
